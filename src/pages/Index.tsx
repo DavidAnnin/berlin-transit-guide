@@ -87,7 +87,7 @@ const Index = () => {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-xl font-bold">Berlin Transit Guide</h1>
           <nav>
-            <NavLink to="/about" className="text-white hover:underline">
+            <NavLink to="/about" className="text-white hover:underline text-lg md:text-xl">
               About
             </NavLink>
           </nav>
@@ -107,21 +107,67 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="space-y-6 max-w-5xl mx-auto">
+            <div id="ubahn" className="space-y-6 max-w-5xl mx-auto">
               {transportData.map((transport) => (
-                <TransportCard
-                  key={transport.type}
-                  type={transport.type}
-                  title={transport.title}
-                  description={transport.description}
-                  areas={transport.areas}
-                  tips={transport.tips}
-                  image={
-                    transport.type === "ubahn" ? ubahnImage :
-                    transport.type === "sbahn" ? sbahnImage :
-                    transport.type === "tram" ? tramImage : busImage
-                  }
-                />
+                transport.type === "ubahn" && (
+                  <TransportCard
+                    key={transport.type}
+                    type={transport.type}
+                    title={transport.title}
+                    description={transport.description}
+                    areas={transport.areas}
+                    tips={transport.tips}
+                    image={ubahnImage}
+                  />
+                )
+              ))}
+            </div>
+
+            <div id="sbahn" className="space-y-6 max-w-5xl mx-auto">
+              {transportData.map((transport) => (
+                transport.type === "sbahn" && (
+                  <TransportCard
+                    key={transport.type}
+                    type={transport.type}
+                    title={transport.title}
+                    description={transport.description}
+                    areas={transport.areas}
+                    tips={transport.tips}
+                    image={sbahnImage}
+                  />
+                )
+              ))}
+            </div>
+
+            <div id="tram" className="space-y-6 max-w-5xl mx-auto">
+              {transportData.map((transport) => (
+                transport.type === "tram" && (
+                  <TransportCard
+                    key={transport.type}
+                    type={transport.type}
+                    title={transport.title}
+                    description={transport.description}
+                    areas={transport.areas}
+                    tips={transport.tips}
+                    image={tramImage}
+                  />
+                )
+              ))}
+            </div>
+
+            <div id="bus" className="space-y-6 max-w-5xl mx-auto">
+              {transportData.map((transport) => (
+                transport.type === "bus" && (
+                  <TransportCard
+                    key={transport.type}
+                    type={transport.type}
+                    title={transport.title}
+                    description={transport.description}
+                    areas={transport.areas}
+                    tips={transport.tips}
+                    image={busImage}
+                  />
+                )
               ))}
             </div>
           </div>

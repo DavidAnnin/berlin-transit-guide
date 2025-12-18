@@ -14,18 +14,18 @@ const Hero = () => {
       
       <div className="relative container mx-auto px-4 py-24 md:py-32">
         <div className="max-w-3xl">
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
             Welcome to Berlin!
           </h1>
-          <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 max-w-2xl font-body">
+          <p className="text-lg md:text-xl text-black mb-8 max-w-2xl font-body">
             New to the city? This guide will help you understand how to get around Berlin using public transportation. 
             It's easy, affordable, and connects you to every corner of this amazing city.
           </p>
           <nav className="flex flex-wrap gap-3">
-            <a href="#transport" className="badge-ubahn">U-Bahn</a>
-            <a href="#transport" className="badge-sbahn">S-Bahn</a>
-            <a href="#transport" className="badge-tram">Tram</a>
-            <a href="#transport" className="badge-bus">Bus</a>
+            <a href="#ubahn" className="badge-ubahn">U-Bahn</a>
+            <a href="#sbahn" className="badge-sbahn">S-Bahn</a>
+            <a href="#tram" className="badge-tram">Tram</a>
+            <a href="#bus" className="badge-bus">Bus</a>
           </nav>
         </div>
       </div>
