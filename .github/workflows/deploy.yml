@@ -3,8 +3,9 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main  # This makes the deploy happen every time you push code
-workflow_dispatch: # This adds a "Run workflow" button to the UI
+      - main
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -33,4 +34,4 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: 'eu-central-1'
-          SOURCE_DIR: 'dist'  # This is the folder Vite creates
+          SOURCE_DIR: 'dist'
