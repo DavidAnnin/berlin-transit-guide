@@ -2,6 +2,7 @@ import * as React from "react";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 
@@ -28,7 +29,13 @@ const NavigationMenuList = React.forwardRef<
     ref={ref}
     className={cn("group flex flex-1 list-none items-center justify-center space-x-1", className)}
     {...props}
-  />
+  >
+    <NavigationMenuItem>
+      <Link to="/about" className="text-sm font-medium hover:underline">
+        About
+      </Link>
+    </NavigationMenuItem>
+  </NavigationMenuPrimitive.List>
 ));
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 

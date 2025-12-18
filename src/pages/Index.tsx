@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import TransportCard from "@/components/TransportCard";
 import GoogleMapsGuide from "@/components/GoogleMapsGuide";
 import TicketInfo from "@/components/TicketInfo";
+import { NavLink } from "@/components/NavLink";
 
 import ubahnImage from "@/assets/ubahn.png";
 import sbahnImage from "@/assets/sbahn.png";
@@ -82,6 +83,17 @@ const transportData = [
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <header className="bg-primary text-white py-4">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <h1 className="text-xl font-bold">Berlin Transit Guide</h1>
+          <nav>
+            <NavLink to="/about" className="text-white hover:underline">
+              About
+            </NavLink>
+          </nav>
+        </div>
+      </header>
+
       <Hero />
       
       <main>
