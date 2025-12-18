@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # This makes the deploy happen every time you push code
-
+workflow_dispatch: # This adds a "Run workflow" button to the UI
 jobs:
   deploy:
     runs-on: ubuntu-latest
