@@ -22,11 +22,11 @@ const TicketInfo = () => {
           </div>
 
           <div className="transport-card text-center">
-            <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-              <Clock className="w-6 h-6 text-accent" />
+            <div className="w-12 h-12 rounded-full bg-tram/10 flex items-center justify-center mx-auto mb-4">
+              <Clock className="w-6 h-6 text-tram" />
             </div>
             <h3 className="font-display font-bold text-foreground mb-2">Day Ticket (AB)</h3>
-            <p className="text-2xl font-bold text-accent mb-2">€9.50</p>
+            <p className="text-2xl font-bold text-tram mb-2">€9.50</p>
             <p className="text-muted-foreground text-sm">Unlimited rides until 3 AM next day</p>
           </div>
 
