@@ -1,5 +1,5 @@
+import { useState } from "react";
 import Hero from "@/components/Hero";
-import TransportCard from "@/components/TransportCard";
 import GoogleMapsGuide from "@/components/GoogleMapsGuide";
 import TicketInfo from "@/components/TicketInfo";
 import { NavLink } from "@/components/NavLink";
@@ -9,18 +9,89 @@ import sbahnImage from "@/assets/sbahn.png";
 import tramImage from "@/assets/tram.png";
 import busImage from "@/assets/bus.png";
 
-// --- TRANSPORT DATA ARRAY ---
 const transportData = [
-  { type: "ubahn" as const, title: "Underground Metro", description: "The U-Bahn is Berlin's underground train system. Fastest way to center center.", areas: ["Mitte", "Kreuzberg"], tips: ["Runs 4AM-1AM", "24/7 Weekends"], image: ubahnImage },
-  { type: "sbahn" as const, title: "City Railway", description: "Above-ground trains for longer distances. Connects to the Airport.", areas: ["BER Airport", "Potsdam"], tips: ["Ringbahn circles city", "Green S sign"], image: sbahnImage },
-  { type: "tram" as const, title: "Streetcar / Tram", description: "Mostly in East Berlin. Charming street-level travel.", areas: ["Prenzlauer Berg", "Friedrichshain"], tips: ["M lines frequent", "Same ticket"], image: tramImage },
-  { type: "bus" as const, title: "City Bus", description: "Goes everywhere trains don't. Great double-decker views.", areas: ["Everywhere", "Tourist Route 100"], tips: ["Enter at front", "Night service"], image: busImage },
+  {
+    type: "ubahn" as const,
+    title: "U-Bahn (Subway)",
+    shortDescription: "Fast travel across central Berlin.",
+    fullDescription: "Berlin’s U-Bahn is the underground metro system, perfect for fast travel across the city, especially in central areas. It has 10 lines (U1–U9, plus U55), each running every 5–10 minutes during peak hours. U-Bahn lines intersect at major hubs, making transfers simple. It’s ideal for short, city-center trips and avoiding traffic. The trains run roughly from 4 AM to 1 AM, with 24-hour service on weekends (night buses replace routes overnight).",
+    tips: [
+      "Buy a valid ticket before boarding; ticket machines are at every station.",
+      "Watch for line colors and numbers—they’re easy to follow.",
+      "Avoid rush hours (7–9 AM, 4–6 PM) if possible for a more comfortable ride."
+    ],
+    image: ubahnImage
+  },
+  {
+    type: "sbahn" as const,
+    title: "S-Bahn (City Train)",
+    shortDescription: "Connects city center with outer districts.",
+    fullDescription: "The S-Bahn is Berlin’s suburban train network that connects the city center with outer districts and nearby towns. It has 15 lines (S1–S9, S25, S26, S41–S47), running mostly above ground. S-Bahn trains are slightly faster than buses and U-Bahn for long distances and key landmarks. Circular lines (S41 & S42) loop around the city, which is convenient for sightseeing.",
+    tips: [
+      "Use the S-Bahn to reach airports (S9 to BER) or Berlin outskirts.",
+      "Trains run every 10–20 minutes; night service exists on weekends.",
+      "Lines share some tracks, so check the destination carefully."
+    ],
+    image: sbahnImage
+  },
+  {
+    type: "tram" as const,
+    title: "Tram (Streetcar)",
+    shortDescription: "Reliable transport in East Berlin.",
+    fullDescription: "Trams operate mainly in East Berlin, offering a reliable way to reach areas not served by U-Bahn or S-Bahn. Lines are numbered (M1–M17 for MetroTrams, plus others), and stops are frequent, usually every 5–15 minutes during the day. Trams are great for short trips and scenic city views.",
+    tips: [
+      "Check the final stop to ensure you’re heading in the right direction.",
+      "Tickets are the same as for buses and trains.",
+      "Trams are slower than U-Bahn but cover areas the subway doesn’t."
+    ],
+    image: tramImage
+  },
+  {
+    type: "bus" as const,
+    title: "Bus",
+    shortDescription: "Reaches every neighborhood.",
+    fullDescription: "Buses complement Berlin’s rail networks, reaching every neighborhood, including places U-Bahn and S-Bahn can’t. Standard buses run numbered routes, while express buses (X lines) and night buses (N lines) offer faster and late-night service.",
+    tips: [
+      "Buses stop at every marked stop, so plan extra time for travel.",
+      "Night buses replace trains overnight, so they’re essential for late travel.",
+      "Check digital timetables or apps, as some routes change at night or weekends."
+    ],
+    image: busImage
+  }
 ];
+
+const TransportCard = ({ transport }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div
+      className="border rounded-lg p-4 shadow-md cursor-pointer"
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      <div className="flex items-center space-x-4">
+        <img src={transport.image} alt={transport.title} className="w-16 h-16" />
+        <div>
+          <h3 className="text-xl font-bold">{transport.title}</h3>
+          <p className="text-muted-foreground">{transport.shortDescription}</p>
+        </div>
+      </div>
+      {isExpanded && (
+        <div className="mt-4">
+          <p>{transport.fullDescription}</p>
+          <ul className="list-disc pl-5 mt-2">
+            {transport.tips.map((tip, index) => (
+              <li key={index}>{tip}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* GLOBAL HEADER */}
       <header className="bg-primary text-white py-4">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <h1 className="text-xl font-bold">Berlin Transit Guide</h1>
@@ -32,11 +103,9 @@ const Index = () => {
         </div>
       </header>
 
-      {/* HERO SECTION (Includes the Carbon Calculator inside its own logic) */}
       <Hero />
-      
+
       <main>
-        {/* TRANSPORT SECTIONS */}
         <section id="transport" className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -47,18 +116,9 @@ const Index = () => {
             </div>
 
             <div className="max-w-5xl mx-auto space-y-12">
-               {transportData.map((transport) => (
-                 <div id={transport.type} key={transport.type}>
-                  <TransportCard
-                    type={transport.type}
-                    title={transport.title}
-                    description={transport.description}
-                    areas={transport.areas}
-                    tips={transport.tips}
-                    image={transport.image}
-                  />
-                 </div>
-               ))}
+              {transportData.map((transport) => (
+                <TransportCard key={transport.type} transport={transport} />
+              ))}
             </div>
           </div>
         </section>
