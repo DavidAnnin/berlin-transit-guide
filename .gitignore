@@ -22,3 +22,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Terraform local files
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Python files
+__pycache__/
+*.pyc
+.venv/
+
+# Node/React files
+node_modules/
+dist/
