@@ -127,7 +127,9 @@ const Index = () => {
         <GoogleMapsGuide />
 
         <footer className="py-8 border-t border-border text-center">
-          <p className="text-muted-foreground text-sm">Official info at BVG.de</p>
+          <p className="text-muted-foreground text-sm">
+            Official info at <a href="https://www.bvg.de" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">BVG.de</a>
+          </p>
         </footer>
       </main>
     </div>
